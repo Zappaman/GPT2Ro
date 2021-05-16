@@ -1,0 +1,7 @@
+opustools-pkg
+wiki_dump_reader
+lxml
+numpy
+tqdm
+stanza
+wget

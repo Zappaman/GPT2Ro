@@ -1,0 +1,24 @@
+[package]
+name = "gpt2_deployment"
+version = "0.1.0"
+authors = ["Adrian Mihai Iosif <iosifadrianmihai@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "convert_tensors"
+path = "src/convert_tensors.rs"
+
+[[bin]]
+name = "gpt2"
+path = "src/gpt2.rs"
+
+
+[dependencies]
+anyhow = "1.0"
+rust_tokenizers = "6.2.2"
+tch = "0.3.1"
+rust-bert = "0.14.0"
+clap = "2.33.3"
+structopt = "0.3.21"

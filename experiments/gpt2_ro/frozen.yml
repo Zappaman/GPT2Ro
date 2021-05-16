@@ -1,0 +1,30 @@
+EXPERIMENT:
+  OUTPUT_FOLDER: "./outputs_frozen"
+  TENSORBOARD_FOLDER: "./run_frozen"
+  RESUME_TRAINING_ON_RESTART: True
+DATASET:
+  TRAIN_FILE: "data/corpus/train.txt"
+  VALID_FILE: "data/corpus/val.txt"
+  TOKENIZER_PREFIX_PATH: "data/gpt2_tokenizer_ro/gpt2_tokenizer_ro-"
+TRAIN:
+  GPT2_PRETRAINED_MODEL: 'gpt2'
+  LAST_PRETRAINED_MODEL: ''
+  SAVE_STEPS: 2000
+  WEIGHT_DECAY: 0.0
+  NUM_TRAIN_EPOCHS: 3
+  LOG_EVERY: 100
+  EVAL_STEPS: 1000
+  GRADIENT_ACCUMULATION_STEPS: 1
+  LR_SCHEDULER_TYPE: "linear" # "linear", "cosine", "cosine_with_restarts", "polynomial", "constant", "constant_with_warmup"
+  NUM_WARMUP_STEPS: 0
+  BATCH_SIZE: 32
+  USE_FP_16: True
+  USE_GRADUAL_UNFREEZING: True
+  UNFREEZING:
+    UNFREEZE_GROUPS: [{'lm_head':'*', 'transformer':['wte', 'ln_f']},
+        {'lm_head':'*', 'transformer':['wte', 'ln_f', 'h.10']},
+        {'lm_head':'*', 'transformer':['wte', 'ln_f', 'h.10', 'h.9']},
+        {'lm_head':'*', 'transformer':['wte', 'ln_f', 'h.10', 'h.9', 'h.8']},
+        {'lm_head':'*', 'transformer':'*'}]
+    TRAIN_STEPS_LIST: [500, 1000, 5000, 10000, 50000]
+    LEARNING_RATE_LIST: [0.00005, 0.00005, 0.00005, 0.00005, 0.00005]

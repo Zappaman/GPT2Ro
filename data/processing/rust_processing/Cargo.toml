@@ -1,0 +1,19 @@
+[package]
+name = "rust_processing"
+version = "0.1.0"
+authors = ["Adrian Mihai Iosif <iosifadrianmihai@gmail.com>"]
+edition = "2018"
+
+[[bin]]
+name = "wc_filter"
+path = "src/wc_filter.rs"
+
+[[bin]]
+name = "wc_histogram"
+path = "src/wc_histogram.rs"
+
+[dependencies]
+regex = "1.5"
+structopt = "0.3"
+anyhow = "1.0.40"
+plotters = "0.3.0"
